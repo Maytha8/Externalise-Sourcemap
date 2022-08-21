@@ -2,7 +2,7 @@
   "name": "externalise-sourcemap",
   "version": "1.0.0",
   "description": "Externalise an inline sourcemap.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
