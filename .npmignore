@@ -1,8 +1,9 @@
 # .npmignore
 # Files and directories to be ignored by npm.
 
-# Typescript source code
+# Typescript
 src/
+.tsconfig.json
 
 # Test suite
 test/
