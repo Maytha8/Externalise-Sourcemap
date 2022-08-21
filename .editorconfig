@@ -1,0 +1,5 @@
+root = true
+
+[*.ts, *.js]
+indent_type = space
+indent_size = 4
