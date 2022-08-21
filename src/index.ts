@@ -17,25 +17,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Externalise-Sourcemap
- * @file Externalise an inline sourcemap.
- * Copyright (c) Maytham Alsudany 2022
- * @copyright Maytham Alsudany 2022
- * 
- * This program is free software: you can redistribute it and/or modify  
- * it under the terms of the GNU General Public License as published by  
- * the Free Software Foundation, version 3.
- *
- * This program is distributed in the hope that it will be useful, but 
- * WITHOUT ANY WARRANTY; without even the implied warranty of 
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU 
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License 
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
 
 const SOURCEMAP_REGEX = /(?<=\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,)[A-Za-z0-9=]*/gm;
 const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,[A-Za-z0-9=]*/gm;
@@ -129,3 +110,6 @@ interface Output {
     /** Modified code. Only included if the option `sourcemapOnly` was `false`. */
     code?: string;
 }
+
+// Export function
+export default externaliseSourcemap;
