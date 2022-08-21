@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "nyc mocha ./test/",
+    "coverage": "nyc --reporter=lcov mocha ./test/",
     "build": "tsc",
     "prepare": "npm run build"
   },
