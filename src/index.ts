@@ -13,17 +13,17 @@
  * General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see \<http://www.gnu.org/licenses/\>.
  */
 
-const SOURCEMAP_REGEX = /(?<=\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,)[A-Za-z0-9=]*/gm
-const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,[A-Za-z0-9=]*/gm
+const SOURCEMAP_REGEX = /(?<=\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,)[A-Za-z0-9=]*/m
+const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,[A-Za-z0-9=]*/m
 
 /**
  * Externalise a sourcemap from the provided input.
- * @param input           Input text to process.
- * @param [userOptions]   Options to pass to the externaliseSourcemap function.
- * @returns               Output sourcemap and optionally code.
+ * @param input           - Input text to process.
+ * @param userOptions     - Options to pass to the externaliseSourcemap function.
+ * @returns               - Output sourcemap and optionally code.
  *
  * @example
  * Here's a simple example:
@@ -38,9 +38,10 @@ const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:applicatio
 function externaliseSourcemap (input: string, userOptions?: Options): Output {
 
     let options: Options
-    if (userOptions != null) {
+    if (userOptions !== undefined) {
 
         // Merge user-defined options with default options.
+        // options = { ...defaultOptions, ...userOptions }
         options = { ...defaultOptions, ...userOptions }
 
     } else {
@@ -125,11 +126,11 @@ interface Options {
 }
 
 /** Default options for the externaliseSourcemap function. */
-const defaultOptions: Options = {
+const defaultOptions: Options = Object.seal({
     'sourcemapOnly': true,
     'path': undefined,
     'sourcemapObject': true,
-}
+})
 
 /** Output from externaliseSourcemap function. */
 interface Output {
