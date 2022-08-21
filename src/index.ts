@@ -82,7 +82,10 @@ function externaliseSourcemap(input: string, userOptions?: Options): Output {
 
 /** Options to pass to the externaliseSourcemap function. */
 interface Options {
-    /** Whether code should be included in the output with the externalised sourcemap. Default is `true`. */
+    /** 
+     * Whether code should be included in the output with the externalised sourcemap. 
+     * Default is `true` (don't include code). 
+     */
     sourcemapOnly?: boolean;
     /** 
      * Optionally, provide a path or url to place in a new
@@ -103,7 +106,8 @@ interface Options {
  * Options to pass to the externaliseSourcemap function.
  * @typedef  {Object}    ExternaliseSourcemap~Options
  * @property {boolean}  [sourcemapOnly=true]            Whether code should be included in the output with 
- *                                                      the externalised sourcemap. Default is `true`.
+ *                                                      the externalised sourcemap. Default is `true`
+ *                                                      (don't include code).
  * @property {string}   [path]                          Optionally, provide a path or url to place in a new 
  *                                                      sourcemap comment in the output code.
  *                                                      When undefined, no sourcemap comment is added. Instead, 
