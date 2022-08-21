@@ -1,0 +1,19 @@
+{
+  "name": "externalise-sourcemap",
+  "version": "1.0.0",
+  "description": "Externalise an inline sourcemap.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maytha8/Externalise-Sourcemap.git"
+  },
+  "author": "Maytham Alsudany <44939173+Maytha8@users.noreply.github.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Maytha8/Externalise-Sourcemap/issues"
+  },
+  "homepage": "https://github.com/Maytha8/Externalise-Sourcemap#readme"
+}
