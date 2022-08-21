@@ -1,8 +1,7 @@
 /**
  * Externalise-Sourcemap
- * @file Externalise an inline sourcemap.
+ * Externalise an inline sourcemap.
  * Copyright (c) Maytham Alsudany 2022
- * @copyright Maytham Alsudany 2022
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
