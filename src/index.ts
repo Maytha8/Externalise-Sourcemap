@@ -23,8 +23,9 @@ const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:applicatio
 
 /**
  * Externalise a sourcemap from the provided input.
- * @param input Input text to process.
- * @param [userOptions] Options to pass to the externaliseSourcemap function.
+ * @param {string}                        input           Input text to process.
+ * @param {ExternaliseSourcemap~Options}  [userOptions]   Options to pass to the externaliseSourcemap function.
+ * @returns {ExternaliseSourcemap~Output} Output
  */
 function externaliseSourcemap(input: string, userOptions?: Options): Output {
 
@@ -82,19 +83,35 @@ function externaliseSourcemap(input: string, userOptions?: Options): Output {
 /** Options to pass to the externaliseSourcemap function. */
 interface Options {
     /** Whether code should be included in the output with the externalised sourcemap. Default is `true`. */
-    sourcemapOnly: boolean;
+    sourcemapOnly?: boolean;
     /** 
-     * A path or url to place in the input code. Default is `undefined`.
+     * Optionally, provide a path or url to place in a new
+     * sourcemap comment in the output code.
+     * 
      * When undefined, no sourcemap comment is added. Instead, the
      * inline sourcemap is removed and no replacement is added.
      *
      * Option only effective if `sourcemapOnly` is `false`,
      * otherwise it is ignored.
      */
-    path: string | undefined;
+    path?: string;
     /** Whether the output sourcemap should be an object. Default is `true`. */
-    sourcemapObject: boolean;
+    sourcemapObject?: boolean;
 }
+
+/**
+ * Options to pass to the externaliseSourcemap function.
+ * @typedef  {Object}    ExternaliseSourcemap~Options
+ * @property {boolean}  [sourcemapOnly=true]            Whether code should be included in the output with 
+ *                                                      the externalised sourcemap. Default is `true`.
+ * @property {string}   [path]                          Optionally, provide a path or url to place in a new 
+ *                                                      sourcemap comment in the output code.
+ *                                                      When undefined, no sourcemap comment is added. Instead, 
+ *                                                      the inline sourcemap is removed and no replacement 
+ *                                                      is added.                                               
+ * @property {boolean}  [sourcemapObject=true]          Whether the output sourcemap should be an object. 
+ *                                                      Default is `true`.
+ */
 
 /** Default options for the externaliseSourcemap function. */
 const defaultOptions: Options = {
@@ -105,11 +122,25 @@ const defaultOptions: Options = {
 
 /** Output from externaliseSourcemap function. */
 interface Output {
-    /** The sourcemap as either a string or an object. */
+    /** 
+     * The sourcemap as either a string or an object.
+     * If no inline sourcemap was found, this value will be an empty
+     * object (`{}`) or string (`''`).
+     */
     sourcemap: object | string;
     /** Modified code. Only included if the option `sourcemapOnly` was `false`. */
     code?: string;
 }
+
+/**
+ * Output from externaliseSourcemap function.
+ * @typedef  {Object}               ExternaliseSourcemap~Output
+ * @property {(object|string)}      sourcemap   The sourcemap as either a string or an object.
+ *                                              If no inline sourcemap was found, this value
+ *                                              will be an empty object (`{}`) or string (`''`).
+ * @property {string}               [code]      Modified code. Only included if the option 
+ *                                              `sourcemapOnly` was `false`.
+ */
 
 // Export function
 export default externaliseSourcemap;
