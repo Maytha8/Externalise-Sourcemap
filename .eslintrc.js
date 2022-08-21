@@ -2,8 +2,14 @@ module.exports = {
     'env': {
         'es2021': true,
         'node': true,
+        'browser': false,
+        'mocha': true,
     },
     'extends': 'standard-with-typescript',
+    'plugins': [
+        '@typescript-eslint/eslint-plugin',
+        'eslint-plugin-tsdoc',
+    ],
     'overrides': [
     ],
     'parserOptions': {
@@ -12,11 +18,15 @@ module.exports = {
     },
     'rules': {
         'indent': 'off',
-        '@typescript-eslint/indent': ['warn', 4],
-        'quote-props': ['error', 'always'],
         'quotes': 'off',
+        'no-unused-vars': 'off',
+        'comma-dangle': 'off',
+        'quote-props': ['error', 'always'],
+        '@typescript-eslint/indent': ['warn', 4],
         '@typescript-eslint/quotes': ['warn', 'single'],
-        'comma-dangle': ['error', 'always-multiline'],
+        '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
+        '@typescript-eslint/no-unused-vars': ['warn'],
+        'tsdoc/syntax': ['warn'].
     },
     'ignorePatterns': [
         'dist/',

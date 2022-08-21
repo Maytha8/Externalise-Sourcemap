@@ -22,9 +22,9 @@ const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:applicatio
 
 /**
  * Externalise a sourcemap from the provided input.
- * @param {string}                        input           Input text to process.
- * @param {ExternaliseSourcemap~Options}  [userOptions]   Options to pass to the externaliseSourcemap function.
- * @returns {ExternaliseSourcemap~Output} Output
+ * @param input           Input text to process.
+ * @param [userOptions]   Options to pass to the externaliseSourcemap function.
+ * @returns               Output sourcemap and optionally code.
  */
 function externaliseSourcemap (input: string, userOptions?: Options): Output {
     let options: Options
@@ -37,13 +37,13 @@ function externaliseSourcemap (input: string, userOptions?: Options): Output {
 
     // Set output variable
     const output: Output = {
-        'sourcemap': options.sourcemapObject ? {} : '',
+        'sourcemap': options.sourcemapObject === true ? {} : '',
     }
 
     // Find inline sourcemap using regex
     const matches = SOURCEMAP_REGEX.exec(input)
 
-    if ((matches == null) || !matches.length) {
+    if ((matches == null) || matches.length === 0) {
         // Return nothing if no sourcemap was found
         return output
     }
@@ -54,7 +54,7 @@ function externaliseSourcemap (input: string, userOptions?: Options): Output {
     // Decode sourcemap
     const sourcemap = Buffer.from(encodedSourcemap, 'base64').toString()
 
-    if (options.sourcemapObject) {
+    if (options.sourcemapObject === true) {
         // Parse string into object
         output.sourcemap = JSON.parse(sourcemap)
     } else {
@@ -63,11 +63,11 @@ function externaliseSourcemap (input: string, userOptions?: Options): Output {
     }
 
     // Should we include code in the output?
-    if (!options.sourcemapOnly) {
+    if (options.sourcemapOnly === false) {
         // Remove existing sourcemap comment
         let outputCode = input.replace(SOURCEMAP_COMMENT_REGEX, '')
         // Should we add a new sourcemap comment?
-        if (options.path) {
+        if (options.path !== undefined) {
             outputCode += '\n//# sourceMappingURL=' + options.path
         }
         // Add code to output
@@ -99,21 +99,6 @@ interface Options {
     sourcemapObject?: boolean
 }
 
-/**
- * Options to pass to the externaliseSourcemap function.
- * @typedef  {Object}    ExternaliseSourcemap~Options
- * @property {boolean}  [sourcemapOnly=true]            Whether code should be included in the output with
- *                                                      the externalised sourcemap. Default is `true`
- *                                                      (don't include code).
- * @property {string}   [path]                          Optionally, provide a path or url to place in a new
- *                                                      sourcemap comment in the output code.
- *                                                      When undefined, no sourcemap comment is added. Instead,
- *                                                      the inline sourcemap is removed and no replacement
- *                                                      is added.
- * @property {boolean}  [sourcemapObject=true]          Whether the output sourcemap should be an object.
- *                                                      Default is `true`.
- */
-
 /** Default options for the externaliseSourcemap function. */
 const defaultOptions: Options = {
     'sourcemapOnly': true,
@@ -132,16 +117,6 @@ interface Output {
     /** Modified code. Only included if the option `sourcemapOnly` was `false`. */
     code?: string
 }
-
-/**
- * Output from externaliseSourcemap function.
- * @typedef  {Object}               ExternaliseSourcemap~Output
- * @property {(object|string)}      sourcemap   The sourcemap as either a string or an object.
- *                                              If no inline sourcemap was found, this value
- *                                              will be an empty object (`{}`) or string (`''`).
- * @property {string}               [code]      Modified code. Only included if the option
- *                                              `sourcemapOnly` was `false`.
- */
 
 // Export function
 export default externaliseSourcemap
