@@ -26,7 +26,7 @@ module.exports = {
         '@typescript-eslint/quotes': ['warn', 'single'],
         '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
         '@typescript-eslint/no-unused-vars': ['warn'],
-        'tsdoc/syntax': ['warn'].
+        'tsdoc/syntax': ['warn'],
     },
     'ignorePatterns': [
         'dist/',
