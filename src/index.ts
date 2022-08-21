@@ -36,12 +36,17 @@ const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:applicatio
  * ```
  */
 function externaliseSourcemap (input: string, userOptions?: Options): Output {
+
     let options: Options
     if (userOptions != null) {
+
         // Merge user-defined options with default options.
         options = { ...defaultOptions, ...userOptions }
+
     } else {
+
         options = defaultOptions
+
     }
 
     // Set output variable
@@ -53,8 +58,10 @@ function externaliseSourcemap (input: string, userOptions?: Options): Output {
     const matches = SOURCEMAP_REGEX.exec(input)
 
     if ((matches == null) || matches.length === 0) {
+
         // Return nothing if no sourcemap was found
         return output
+
     }
 
     // Get sourcemap
@@ -64,26 +71,35 @@ function externaliseSourcemap (input: string, userOptions?: Options): Output {
     const sourcemap = Buffer.from(encodedSourcemap, 'base64').toString()
 
     if (options.sourcemapObject === true) {
+
         // Parse string into object
         output.sourcemap = JSON.parse(sourcemap)
+
     } else {
+
         // Return string
         output.sourcemap = sourcemap
+
     }
 
     // Should we include code in the output?
     if (options.sourcemapOnly === false) {
+
         // Remove existing sourcemap comment
         let outputCode = input.replace(SOURCEMAP_COMMENT_REGEX, '')
         // Should we add a new sourcemap comment?
         if (options.path !== undefined) {
+
             outputCode += '\n//# sourceMappingURL=' + options.path
+
         }
         // Add code to output
         output.code = outputCode
+
     }
 
     return output
+
 }
 
 /** Options to pass to the externaliseSourcemap function. */

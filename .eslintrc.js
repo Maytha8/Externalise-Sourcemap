@@ -22,6 +22,7 @@ module.exports = {
         'no-unused-vars': 'off',
         'comma-dangle': 'off',
         'quote-props': ['error', 'consistent'],
+        'padded-blocks': ['warn', 'always'],
         '@typescript-eslint/indent': ['warn', 4],
         '@typescript-eslint/quotes': ['warn', 'single'],
         '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
