@@ -25,6 +25,16 @@ const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:applicatio
  * @param input           Input text to process.
  * @param [userOptions]   Options to pass to the externaliseSourcemap function.
  * @returns               Output sourcemap and optionally code.
+ *
+ * @example
+ * Here's a simple example:
+ * ```
+ * const extSourcemap = require('externalise-sourcemap');
+ * const fs = require('fs');
+ *
+ * const sourcemap = extSourcemap(fs.readFileSync('myScript.js'));
+ * // Outputs a source map as an object.
+ * ```
  */
 function externaliseSourcemap (input: string, userOptions?: Options): Output {
     let options: Options
