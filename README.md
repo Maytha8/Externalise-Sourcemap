@@ -6,3 +6,25 @@
 [![npm](https://img.shields.io/npm/v/externalise-sourcemap?style=flat-square)](https://www.npmjs.com/package/externalise-sourcemap)
 
 Externalise an inline sourcemap.
+
+## IMPORTANT
+**If using CommonJS, use `require('externalise-sourcemap').default` instead of `require('externalise-sourcemap')`**
+
+## Documentation
+- [Wiki Home](https://github.com/Maytha8/Externalise-Sourcemap/wiki)
+- [API Documentation](https://github.com/Maytha8/Externalise-Sourcemap/wiki/API)
+
+## Install
+```sh
+npm install externalise-sourcemap
+```
+
+## Import
+CommonJS:
+```js
+const externaliseSourcemap = require('externalise-sourcemap').default;
+```
+ES module:
+```js
+import externaliseSourcemap from 'externalise-sourcemap';
+```
