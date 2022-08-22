@@ -7,7 +7,7 @@
 
 Externalise an inline sourcemap.
 
-## IMPORTANT
+## IMPORTANT NOTE, PLEASE READ
 **If using CommonJS, use `require('externalise-sourcemap').default` instead of `require('externalise-sourcemap')`**
 
 ## Documentation
