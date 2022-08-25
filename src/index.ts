@@ -16,8 +16,8 @@
  * along with this program. If not, see \<http://www.gnu.org/licenses/\>.
  */
 
-const SOURCEMAP_REGEX = /(?<=\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,)[A-Za-z0-9=]*/m
-const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json;base64,[A-Za-z0-9=]*/m
+const SOURCEMAP_REGEX = /(?<=\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json(;charset\s*=[\s"']*([A-Za-z0-9-\s]*))?;base64,)[A-Za-z0-9=]*/m
+const SOURCEMAP_COMMENT_REGEX = /\/(\/|\*)[@#]\ssourceMappingURL=data:application\/json(;charset\s*=[\s"']*([A-Za-z0-9-\s]*))?;base64,[A-Za-z0-9=]*/m
 
 /**
  * Externalise a sourcemap from the provided input.
