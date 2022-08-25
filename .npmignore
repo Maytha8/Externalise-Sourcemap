@@ -1,6 +1,11 @@
 # .npmignore
 # Files and directories to be ignored by npm.
 
+# Config files
+.github/
+.eslintrc.js
+.editorconfig
+
 # Typescript
 src/
 tsconfig.json
