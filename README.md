@@ -28,3 +28,6 @@ ES module:
 ```js
 import externaliseSourcemap from 'externalise-sourcemap';
 ```
+
+## Contributing
+If you have encountered a bug or need help, feel free to [open an issue](https://github.com/Maytha8/Externalise-Sourcemap/issues/new).
