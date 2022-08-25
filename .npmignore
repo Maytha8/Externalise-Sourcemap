@@ -3,7 +3,7 @@
 
 # Typescript
 src/
-.tsconfig.json
+tsconfig.json
 
 # Test suite
 test/
