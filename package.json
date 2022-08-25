@@ -1,6 +1,6 @@
 {
   "name": "externalise-sourcemap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Externalise an inline sourcemap.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
